@@ -1,0 +1,25 @@
+services:
+  web:
+    image: auth-test/dev
+    container_name: auth-test_dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      NODE_ENV: development
+    ports:
+      - 5173:5173
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+        - action: rebuild
+          path: package.json
+        - action: rebuild
+          path: svelte.config.json
+        - action: rebuild
+          path: vite.config.ts
+networks:
+  default:
+    name: auth-test_dev

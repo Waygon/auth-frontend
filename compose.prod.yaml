@@ -1,0 +1,14 @@
+services:
+  web:
+    image: auth-test/prod
+    container_name: auth-test_prod
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+networks:
+  default:
+    name: auth-test_prod
